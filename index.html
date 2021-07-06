@@ -151,7 +151,7 @@
         <div class="flex flex-wrap items-center">
           <div class="w-full lg:w-1/2">
             <div class="mb-5 lg:mb-0">
-              <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">Advatanges of working with us</h2>
+              <h2 class="mb-12 section-heading wow fadeInDown" data-wow-delay="0.3s">Why us</h2>
               
               <div class="flex flex-wrap">
                 <div class="w-full sm:w-1/2 lg:w-1/2">
@@ -241,7 +241,7 @@
                 </div>
               </div>
               <div class="text-center px-5 py-3">
-                <h3 class="team-name">Fuad Abedela</h3>
+                <h3 class="team-name">Fuad Abedlla</h3>
                 <p>CEO/Founder/Project Manager</p>
               </div>
             </div>
@@ -389,8 +389,8 @@
             
             <form name="form1" for="" action="#Subscribes">
               <div class="wow fadeInDown" data-wow-delay="0.3s">
-                <input type="Email" name="email" class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none" name="email" placeholder="Email Address">
-                <button class="mb-3 border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75" type="submit" onclick="ValidateEmail(document.form1.email)"> <a href="http://silaschool.us-east-1.elasticbeanstalk.com/site/userlogin"><i class="lni lni-arrow-right"></i></a></button>
+                <input type="Email" name="email1" class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none" name="email" placeholder="Email Address">
+                <button class="mb-3 border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75" type="submit" onclick="ValidateEmail(document.form1.email1)"><i class="lni lni-arrow-right"></i></button>
               </div>
             </form>
           </div>
@@ -410,7 +410,7 @@
           <div class="w-full md:w-1/2">
             <div class="contact">
               <h2 class="uppercase font-bold text-xl text-gray-700 mb-5 ml-3">Contact Form</h2>
-              <form id="contactForm" action="assets/contact.php">
+              <form>
                 <div class="flex flex-wrap">
                   <div class="w-full sm:w-1/2 md:w-full lg:w-1/2">
                     <div class="mx-3">
@@ -588,8 +588,15 @@
       <div class="container">
         <div class="flex flex-wrap">
           <div class="w-full text-center">
-            <p class="text-white">Designed and Developed by <a class="text-white duration-300 hover:text-blue-600" href="https://silahitech.com" rel="nofollow">Sila HiTech</a></p>
-          </div>
+            <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+              <div class="text-sm text-gray-600 font-semibold py-1">
+                Copyright © 2021
+                <a
+    
+                  class="text-gray-600 hover:text-gray-900"
+                  >Sila HiTech LTD.</a
+                >
+              </div>       </div>
         </div>
       </div>
     </section>   
@@ -612,18 +619,81 @@
       var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
       if(inputText.value.match(mailformat))
       {
-      alert("Valid email address!");
-      document.form1.text1.focus();
+        console.log('jere');
+        window.location.assign("http://silaschool.us-east-1.elasticbeanstalk.com/site/login");
+      document.form1.email1.focus();
       return true;
       }
       else
       {
       alert("You have entered an invalid email address!");
-      document.form1.text1.focus();
+      document.form1.email1.focus();
       return false;
       }
       }
     </script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.7.0//firebase-firestore.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  (function() {
+  var firebaseConfig = {
+    apiKey: "AIzaSyBiNUABm9meWj6EpnoiSlxls8eVunBwZxw",
+    authDomain: "silahitech-fb28e.firebaseapp.com",
+    databaseURL: "https://silahitech-fb28e-default-rtdb.firebaseio.com",
+    projectId: "silahitech-fb28e",
+    storageBucket: "silahitech-fb28e.appspot.com",
+    messagingSenderId: "593841436446",
+    appId: "1:593841436446:web:ab06d527d05fb25bfcbb0f",
+    measurementId: "G-KCBF95EYM1"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  var push_to_firebase = function(data){
+    alert("Thanks for sending a message. I'll try and get back to you as soon as possible.")
+        var db = firebase.firestore();
+        db.collection("messages").add({
+            name: data["name"],
+            email: data["email"],
+            message: data["msg"],
+            subject:data["subject"],
+            timestamp: Date.now()
+        })
+
+        .then(function(docRef) {
+            console.log("Message sent, ID: ", docRef.id);
+            // location.reload();
+        })
+        .catch(function(error) {
+            console.error("Message could not be sent: ", error);
+        });
+      }
+
+      var contact_submit = function(){
+        var name = document.getElementById("name");
+        var email = document.getElementById("email");
+        var msg = document.getElementById("message");
+        var subject= document.getElementById("subject");
+        var data = {
+          "name": name.value,
+          "email": email.value,
+          "msg": msg.value,
+          "subject":subject.value
+        };
+      
+        push_to_firebase(data);
+
+      }
+      
+      document.getElementById("form-submit").addEventListener("click", contact_submit);
+    })();
+</script>
     <script src="assets/js/wow.js"></script>
     <script src="assets/js/tiny-slider.js"></script>
     <script src="assets/js/contact-form.js"></script>      

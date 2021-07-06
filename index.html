@@ -619,15 +619,15 @@
       var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
       if(inputText.value.match(mailformat))
       {
-        console.log('jere');
-        window.location.assign("http://silaschool.us-east-1.elasticbeanstalk.com/site/login");
+       
+        setTimeout(function() {window.location.href="http://silaschool.us-east-1.elasticbeanstalk.com/site/login";});
       document.form1.email1.focus();
       return true;
       }
       else
       {
       alert("You have entered an invalid email address!");
-      document.form1.email1.focus();
+      document.form1.subscribeEmail.focus();
       return false;
       }
       }

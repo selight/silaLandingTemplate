@@ -387,10 +387,10 @@
           <div class="w-full sm:w-3/4 md:w-2/3 lg:w-1/2">
             <h4 class="mb-8 section-heading wow fadeInUp" data-wow-delay="0.3s">Vist our School Managment demo</h4>
             
-            <form name="form1" for="" action="#Subscribes">
+            <form name="form1"  action="https://ic3euu1ewk.execute-api.us-east-1.amazonaws.com/dev/notes">
               <div class="wow fadeInDown" data-wow-delay="0.3s">
                 <input type="Email" name="email1"  id="email1" class="w-full mb-5 bg-white border border-blue-300 rounded-full px-5 py-3 duration-300 focus:border-blue-600 outline-none"  placeholder="Email Address">
-                <button class="mb-3 border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75" id="form-submit" type="submit" onclick="ValidateEmail(document.form1.email1)"><i class="lni lni-arrow-right"></i></button>
+                <button class="mb-3 border-0 bg-blue-600 text-white rounded-full w-12 h-12 duration-300 hover:opacity-75" type="submit" onclick="ValidateEmail(document.form1.email1)"><i class="lni lni-arrow-right"></i></button>
               </div>
             </form>
           </div>
@@ -619,73 +619,20 @@
       var mailformat = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
       if(inputText.value.match(mailformat))
       {
-        var email = document.getElementById("email1");
-        var data = {
-          "email": email.value
-        };
-       push_to_firebase (data);
         setTimeout(function() {
-       
-        window.location.href="http://silaschool.us-east-1.elasticbeanstalk.com/site/login";});
+        window.location.href="http://silaschool.us-east-1.elasticbeanstalk.com/site/login";
+      });
       return true;
       }
       else
       {
       alert("You have entered an invalid email address!");
-      
       return false;
       }
       }
-     
-       
-
-     
-      
-      
     </script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
-<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-analytics.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.7.0/firebase-database.js"></script>
-
-<script src="https://www.gstatic.com/firebasejs/8.7.0//firebase-firestore.js"></script>
-
-<script>
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  (function() {
-  var firebaseConfig = {
-    apiKey: "AIzaSyBiNUABm9meWj6EpnoiSlxls8eVunBwZxw",
-    authDomain: "silahitech-fb28e.firebaseapp.com",
-    databaseURL: "https://silahitech-fb28e-default-rtdb.firebaseio.com",
-    projectId: "silahitech-fb28e",
-    storageBucket: "silahitech-fb28e.appspot.com",
-    messagingSenderId: "593841436446",
-    appId: "1:593841436446:web:ab06d527d05fb25bfcbb0f",
-    measurementId: "G-KCBF95EYM1"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
-  var push_to_firebase = function(data){
-    alert("Thanks for sending a message. I'll try and get back to you as soon as possible.")
-        var db = firebase.firestore();
-        db.collection("messages").add({          
-            email: data["email"],
-            timestamp: Date.now()
-        })
-
-        .then(function(docRef) {
-            console.log("Message sent, ID: ", docRef.id);
-            // location.reload();
-        })
-        .catch(function(error) {
-            console.error("Message could not be sent: ", error);
-        });
-      }
-    })();
-</script>
     <script src="assets/js/wow.js"></script>
     <script src="assets/js/tiny-slider.js"></script>
     <script src="assets/js/contact-form.js"></script>      
